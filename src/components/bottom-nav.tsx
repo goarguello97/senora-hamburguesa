@@ -79,7 +79,7 @@ export function BottomNav({ user }: BottomNavProps) {
         <div className="flex items-center gap-3">
           <Link href="/pedidos" className="flex items-center gap-2">
             <ChefHat className="w-6 h-6" />
-            <h1 className="text-lg font-bold">Señoría</h1>
+            <h1 className="text-lg font-bold">Señora Hamburguesa</h1>
           </Link>
         </div>
         <div className="flex items-center gap-4">
@@ -123,7 +123,7 @@ export function BottomNav({ user }: BottomNavProps) {
       <header className="md:hidden bg-primary text-white px-3 py-2 flex items-center justify-between shadow-md shrink-0 sticky top-0 z-40">
         <Link href="/pedidos" className="flex items-center gap-2">
           <ChefHat className="w-5 h-5" />
-          <h1 className="text-base font-bold">Señoría</h1>
+          <h1 className="text-base font-bold">Señora Hamburguesa</h1>
         </Link>
         <div className="flex items-center gap-2">
           <span className="text-xs opacity-80">{user.nombre}</span>

@@ -34,7 +34,7 @@ export function Navbar({ user }: { user: { nombre: string; rol: string } | null 
   return (
     <>
       <header className="bg-primary text-white px-4 py-3 flex items-center justify-between shadow-md shrink-0">
-        <h1 className="text-lg font-bold">Señoría</h1>
+        <h1 className="text-lg font-bold">Señora Hamburguesa</h1>
         <div className="flex items-center gap-2">
           <span className="text-sm opacity-80">{user.nombre}</span>
           <Button variant="ghost" size="sm" onClick={handleLogout} className="text-white hover:bg-white/20">

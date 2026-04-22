@@ -1,4 +1,4 @@
-# Señoría Hamburguesería
+# Señora Hamburguesa
 
 Sistema de pedidos y administración para local de hamburguesería.
 

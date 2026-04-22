@@ -1,4 +1,4 @@
-# AGENTS.md -Señoría Hamburguesería
+# AGENTS.md - Señora Hamburguesa
 
 ## Commands
 ```bash

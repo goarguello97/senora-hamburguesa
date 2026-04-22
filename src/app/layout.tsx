@@ -4,7 +4,7 @@ import { getDbAsync } from '@/lib/db'
 import { Toaster } from '@/components/ui/toaster'
 
 export const metadata: Metadata = {
-  title: 'Señoría Hamburguesería',
+  title: 'Señora Hamburguesa',
   description: 'Sistema de pedidos y administración',
 }
 
