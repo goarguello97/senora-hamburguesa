@@ -1,0 +1,608 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "nombre": "Hamburguesas",
+      "orden": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Lomitos",
+      "orden": 2
+    },
+    {
+      "id": 3,
+      "nombre": "Pizzas",
+      "orden": 3
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Simple",
+      "precio": 8500,
+      "categoria_id": 1,
+      "activo": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Doble",
+      "precio": 10000,
+      "categoria_id": 1,
+      "activo": 1
+    },
+    {
+      "id": 3,
+      "nombre": "Triple",
+      "precio": 11500,
+      "categoria_id": 1,
+      "activo": 1
+    },
+    {
+      "id": 4,
+      "nombre": "Lomito x1",
+      "precio": 10000,
+      "categoria_id": 2,
+      "activo": 1
+    },
+    {
+      "id": 5,
+      "nombre": "Lomito x2",
+      "precio": 19000,
+      "categoria_id": 2,
+      "activo": 1
+    },
+    {
+      "id": 6,
+      "nombre": "Muzzarela",
+      "precio": 10000,
+      "categoria_id": 3,
+      "activo": 1
+    },
+    {
+      "id": 7,
+      "nombre": "Especial",
+      "precio": 12000,
+      "categoria_id": 3,
+      "activo": 1
+    },
+    {
+      "id": 8,
+      "nombre": "Fugazzeta",
+      "precio": 12000,
+      "categoria_id": 3,
+      "activo": 1
+    },
+    {
+      "id": 9,
+      "nombre": "Argentina",
+      "precio": 15000,
+      "categoria_id": 3,
+      "activo": 1
+    }
+  ],
+  "modificadores": [
+    {
+      "id": 1,
+      "nombre": "Queso cheddar",
+      "tipo": "topping"
+    },
+    {
+      "id": 2,
+      "nombre": "Queso dambo",
+      "tipo": "topping"
+    },
+    {
+      "id": 3,
+      "nombre": "Lechuga",
+      "tipo": "topping"
+    },
+    {
+      "id": 4,
+      "nombre": "Tomate",
+      "tipo": "topping"
+    },
+    {
+      "id": 5,
+      "nombre": "Panceta",
+      "tipo": "topping"
+    },
+    {
+      "id": 6,
+      "nombre": "Cebolla caramelizada",
+      "tipo": "topping"
+    },
+    {
+      "id": 7,
+      "nombre": "Cebolla morada",
+      "tipo": "topping"
+    },
+    {
+      "id": 8,
+      "nombre": "Pepinos",
+      "tipo": "topping"
+    },
+    {
+      "id": 9,
+      "nombre": "Champiñones",
+      "tipo": "topping"
+    },
+    {
+      "id": 10,
+      "nombre": "Pimientos asados",
+      "tipo": "topping"
+    },
+    {
+      "id": 11,
+      "nombre": "Huevo frito",
+      "tipo": "topping"
+    },
+    {
+      "id": 12,
+      "nombre": "Mayonesa",
+      "tipo": "aderezo"
+    },
+    {
+      "id": 13,
+      "nombre": "Mostaza",
+      "tipo": "aderezo"
+    },
+    {
+      "id": 14,
+      "nombre": "Ketchup",
+      "tipo": "aderezo"
+    },
+    {
+      "id": 15,
+      "nombre": "Relish",
+      "tipo": "aderezo"
+    },
+    {
+      "id": 16,
+      "nombre": "BBQ",
+      "tipo": "aderezo"
+    },
+    {
+      "id": 17,
+      "nombre": "Tasty",
+      "tipo": "aderezo"
+    },
+    {
+      "id": 18,
+      "nombre": "Mayo picante",
+      "tipo": "aderezo"
+    },
+    {
+      "id": 19,
+      "nombre": "Especial",
+      "tipo": "aderezo"
+    }
+  ],
+  "producto_modificador": [
+    {
+      "producto_id": 1,
+      "modificador_id": 1
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 2
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 3
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 4
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 5
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 6
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 7
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 8
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 9
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 10
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 11
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 12
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 13
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 14
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 15
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 16
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 17
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 18
+    },
+    {
+      "producto_id": 1,
+      "modificador_id": 19
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 1
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 2
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 3
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 4
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 5
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 6
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 7
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 8
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 9
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 10
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 11
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 12
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 13
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 14
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 15
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 16
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 17
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 18
+    },
+    {
+      "producto_id": 2,
+      "modificador_id": 19
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 1
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 2
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 3
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 4
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 5
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 6
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 7
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 8
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 9
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 10
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 11
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 12
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 13
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 14
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 15
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 16
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 17
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 18
+    },
+    {
+      "producto_id": 3,
+      "modificador_id": 19
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 1
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 2
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 3
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 4
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 5
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 6
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 7
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 8
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 9
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 10
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 11
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 12
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 13
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 14
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 15
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 16
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 17
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 18
+    },
+    {
+      "producto_id": 4,
+      "modificador_id": 19
+    }
+  ],
+  "lomito_ingredientes": [
+    {
+      "id": 1,
+      "nombre": "Lechuga",
+      "obligatorio": 0
+    },
+    {
+      "id": 2,
+      "nombre": "Tomate",
+      "obligatorio": 0
+    },
+    {
+      "id": 3,
+      "nombre": "Bife de lomo",
+      "obligatorio": 1
+    },
+    {
+      "id": 4,
+      "nombre": "Jamón cocido",
+      "obligatorio": 0
+    },
+    {
+      "id": 5,
+      "nombre": "Queso dambo",
+      "obligatorio": 0
+    },
+    {
+      "id": 6,
+      "nombre": "Huevo frito",
+      "obligatorio": 0
+    },
+    {
+      "id": 7,
+      "nombre": "Mayonesa de la casa",
+      "obligatorio": 0
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Benjamin",
+      "password_hash": "$2b$10$1kddT1oBvhHVqjk5pvihxuK1OxcjFMRTcf2PPSU//VG3tnX5c9Fvu",
+      "rol": "cajero"
+    },
+    {
+      "id": 2,
+      "nombre": "Gonzalo",
+      "password_hash": "$2b$10$g0MdnkkwvB0K0XorLgxuyO2qAXpISiM6fKJ31oA26j8zow1D6T7TO",
+      "rol": "admin"
+    }
+  ],
+  "caja_apertura": [],
+  "caja_arqueo": [],
+  "pedidos": [
+    {
+      "estado": "entregado",
+      "total": 18500,
+      "metodo_pago": "efectivo",
+      "cashier_id": 2,
+      "created_at": "2026-04-22T00:07:23.605Z",
+      "entregado_en": "2026-04-22T00:51:32.448Z",
+      "id": 1
+    },
+    {
+      "estado": "entregado",
+      "total": 11500,
+      "metodo_pago": "efectivo",
+      "cashier_id": 2,
+      "created_at": "2026-04-22T23:35:24.970Z",
+      "entregado_en": "2026-04-22T23:35:44.673Z",
+      "id": 2
+    }
+  ],
+  "pedido_items": [
+    {
+      "pedido_id": 1,
+      "producto_id": 1,
+      "cantidad": 1,
+      "toppings": "[\"Queso cheddar\",\"Lechuga\",\"Tomate\",\"Panceta\",\"Pepinos\"]",
+      "aderezos": "[\"Mayonesa\"]",
+      "omitidos": "[]",
+      "nota": "",
+      "estado_kds": "listo",
+      "id": 1
+    },
+    {
+      "pedido_id": 1,
+      "producto_id": 4,
+      "cantidad": 1,
+      "toppings": "[]",
+      "aderezos": "[]",
+      "omitidos": "[]",
+      "nota": "",
+      "estado_kds": "listo",
+      "id": 2
+    },
+    {
+      "pedido_id": 2,
+      "producto_id": 3,
+      "cantidad": 1,
+      "toppings": "[\"Queso cheddar\",\"Lechuga\",\"Tomate\",\"Panceta\",\"Huevo frito\"]",
+      "aderezos": "[\"Tasty\"]",
+      "omitidos": "[]",
+      "nota": "",
+      "estado_kds": "listo",
+      "id": 3
+    }
+  ],
+  "gastos": [],
+  "_nextId": {
+    "categorias": 1,
+    "productos": 10,
+    "modificadores": 20,
+    "lomito_ingredientes": 8,
+    "caja_apertura": 1,
+    "caja_arqueo": 1,
+    "pedidos": 3,
+    "pedido_items": 4,
+    "gastos": 1,
+    "usuarios": 3
+  }
+}
