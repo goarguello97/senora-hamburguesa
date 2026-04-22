@@ -1,4 +1,4 @@
-#Señoría Hamburguesería
+# Señoría Hamburguesería
 
 Sistema de pedidos y administración para local de hamburguesería.
 
@@ -13,8 +13,7 @@ Abrir http://localhost:3000
 
 ## Usuarios
 
-- **Benjamin** (cajero): `benjamin123`
-- **Gonzalo** (admin): `gonzalo123`
+Ver `AGENTS.md` para credenciales.
 
 ## Tech Stack
 
@@ -31,10 +30,10 @@ src/
 ├── app/
 │   ├── api/          # API routes
 │   ├── pedidos/      # Order taking
-│   ├── cocina/      # Kitchen display
-│   ├── caja/        # Cash management
-│   ├── gastos/      # Expenses
-│   └── reportes/    # Reports
+│   ├── cocina/       # Kitchen display
+│   ├── caja/         # Cash management
+│   ├── gastos/       # Expenses
+│   └── reportes/     # Reports
 ├── lib/              # DB, auth utils
 └── components/       # UI components
 ```
