@@ -2,7 +2,7 @@ import { SignJWT, jwtVerify, JWTPayload } from 'jose'
 import { cookies } from 'next/headers'
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'senoria-hamburgueseria-secret-key-2024'
+  process.env.JWT_SECRET || process.env.AUTH_SECRET || 'change-this-in-production'
 )
 
 export interface UserPayload extends JWTPayload {

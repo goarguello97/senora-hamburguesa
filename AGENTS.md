@@ -27,12 +27,14 @@ All pages use a flex layout where:
 ### Database
 Uses JSON file at `data/db.json` - NOT SQLite. The sql.js package is installed but not used.
 
-## Users (seeded)
+## Users (seeded - example)
 
 | Username | Password  | Role   |
 |----------|-----------|--------|
-| Benjamin | benjamin123 | cajero |
-| Gonzalo  | gonzalo123  | admin  |
+| admin    | ${ADMIN_PASSWORD} | admin  |
+| cajero   | ${CAJERO_PASSWORD}  | cajero |
+
+> **Nota:** Los usuarios reales se encuentran en `data/db.json`. Change las contraseñas en producción.
 
 ## Routes
 
