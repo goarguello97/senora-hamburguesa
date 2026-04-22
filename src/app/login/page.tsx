@@ -63,7 +63,7 @@ export default function Login() {
         return
       }
 
-      toast.success('Bienvenido a Señoría', {
+      toast.success('Bienvenido a Señora', {
         description: `Hola, ${data.nombre || nombre}!`,
       })
       
@@ -82,7 +82,7 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center p-4 bg-background">
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center pb-2">
-          <CardTitle className="text-2xl text-primary font-bold">Señoría</CardTitle>
+          <CardTitle className="text-2xl text-primary font-bold">Señora</CardTitle>
           <p className="text-sm text-muted">Hamburguesería</p>
         </CardHeader>
         <CardContent>
