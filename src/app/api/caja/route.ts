@@ -4,7 +4,7 @@ import { getSession } from '@/lib/auth'
 
 export async function GET(request: NextRequest) {
   try {
-    getData()
+    getData(true)
     const session = await getSession()
     const { searchParams } = new URL(request.url)
     const wantHistorial = searchParams.get('historial') === '1'
@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    getData()
+    getData(true)
     const session = await getSession()
     if (!session) {
       return NextResponse.json({ error: 'No autenticado' }, { status: 401 })

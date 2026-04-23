@@ -43,8 +43,8 @@ function createEmpty(): DbData {
   }
 }
 
-export function getData(): DbData {
-  if (data) return data
+export function getData(forceRefresh = false): DbData {
+  if (data && !forceRefresh) return data
 
   if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true })

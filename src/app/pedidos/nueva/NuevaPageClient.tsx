@@ -77,13 +77,13 @@ export default function PedidosPage() {
       fetch('/api/categorias').then((r) => r.json()),
       fetch('/api/productos').then((r) => r.json()),
       fetch('/api/lomito-ingredientes').then((r) => r.json()),
-      fetch('/api/pedidos', { method: 'HEAD' }).then((r) => r.json()).catch(() => ({ caja_abierta: false })),
+      fetch('/api/caja').then((r) => r.json()).catch(() => ({ apertura: null })),
     ])
-      .then(([cats, prods, loms, cajaStatus]) => {
+      .then(([cats, prods, loms, cajaData]) => {
         setCategorias(cats)
         setProductos(prods)
         setLomitoIngredientes(loms)
-        setCajaCerrada(!cajaStatus?.caja_abierta)
+        setCajaCerrada(!cajaData.apertura)
         if (cats.length > 0) setCatActiva(cats[0].id)
       })
       .catch(() => {

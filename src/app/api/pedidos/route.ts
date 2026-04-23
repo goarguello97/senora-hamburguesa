@@ -3,11 +3,16 @@ import { getData, getAll, insertAndGetId, runQuery } from '@/lib/db'
 import { getSession } from '@/lib/auth'
 
 function hayCajaAbierta(): boolean {
-  const aperturas = getAll('caja_apertura') as Array<{ id: number }>
-  const arqueos = getAll('caja_arqueo') as Array<{ id: number; apertura_id: number }>
+  const data = getData(true)
+  const aperturas = data.caja_apertura as Array<{ id: number }>
+  const arqueos = data.caja_arqueo as Array<{ id: number; apertura_id: number }>
+  console.log('DEBUG hayCajaAbierta:', { aperturas: aperturas.length, arqueos: arqueos.length })
   if (aperturas.length === 0) return false
   const lastApertura = [...aperturas].sort((a, b) => b.id - a.id)[0]
-  return !arqueos.find((a) => a.apertura_id === lastApertura.id)
+  console.log('DEBUG lastApertura.id:', lastApertura.id)
+  const tieneArqueo = arqueos.find((a) => a.apertura_id === lastApertura.id)
+  console.log('DEBUG tieneArqueo:', tieneArqueo)
+  return !tieneArqueo
 }
 
 export async function GET() {
@@ -38,7 +43,6 @@ export async function GET() {
 
 export async function HEAD() {
   try {
-    getData()
     const abierta = hayCajaAbierta()
     return NextResponse.json({ caja_abierta: abierta })
   } catch (error) {
