@@ -95,8 +95,10 @@ export async function POST(request: NextRequest) {
     }
 
     if (action === 'cerrar') {
-      const aperturas = getAll('caja_apertura') as Array<{ id: number }>
+      getData(true)
+      const aperturas = getAll('caja_apertura') as Array<{ id: number; created_at: string }>
       const arqueos = getAll('caja_arqueo') as Array<{ id: number; apertura_id: number }>
+      const pedidos = getAll('pedidos') as Array<{ id: number; estado: string; created_at: string }>
       const lastApertura = [...aperturas].sort((a, b) => b.id - a.id)[0]
 
       if (!lastApertura) {
@@ -105,6 +107,20 @@ export async function POST(request: NextRequest) {
 
       if (arqueos.find((a) => a.apertura_id === lastApertura.id)) {
         return NextResponse.json({ error: 'La caja ya está cerrada' }, { status: 400 })
+      }
+
+      const fechaApertura = lastApertura.created_at
+      const pedidosPendientes = pedidos.filter((p) => 
+        p.created_at >= fechaApertura && 
+        p.estado !== 'entregado' && 
+        p.estado !== 'cancelado'
+      )
+
+      if (pedidosPendientes.length > 0) {
+        return NextResponse.json({ 
+          error: 'Hay pedidos pendientes', 
+          pedidos_pendientes: pedidosPendientes.length 
+        }, { status: 400 })
       }
 
       if (!monto_final) {
