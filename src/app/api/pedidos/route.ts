@@ -2,6 +2,19 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getData, getAll, insertAndGetId, runQuery } from '@/lib/db'
 import { getSession } from '@/lib/auth'
 
+function hayCajaAbierta(): boolean {
+  const data = getData(true)
+  const aperturas = data.caja_apertura as Array<{ id: number }>
+  const arqueos = data.caja_arqueo as Array<{ id: number; apertura_id: number }>
+  console.log('DEBUG hayCajaAbierta:', { aperturas: aperturas.length, arqueos: arqueos.length })
+  if (aperturas.length === 0) return false
+  const lastApertura = [...aperturas].sort((a, b) => b.id - a.id)[0]
+  console.log('DEBUG lastApertura.id:', lastApertura.id)
+  const tieneArqueo = arqueos.find((a) => a.apertura_id === lastApertura.id)
+  console.log('DEBUG tieneArqueo:', tieneArqueo)
+  return !tieneArqueo
+}
+
 export async function GET() {
   try {
     getData()
@@ -28,6 +41,15 @@ export async function GET() {
   }
 }
 
+export async function HEAD() {
+  try {
+    const abierta = hayCajaAbierta()
+    return NextResponse.json({ caja_abierta: abierta })
+  } catch (error) {
+    return NextResponse.json({ caja_abierta: false })
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     getData()
@@ -38,6 +60,10 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
     const { items, metodo_pago, cliente } = body
+
+    if (!hayCajaAbierta()) {
+      return NextResponse.json({ error: 'Caja cerrada. Abri la caja para tomar pedidos.' }, { status: 403 })
+    }
 
     if (!items || items.length === 0) {
       return NextResponse.json({ error: 'Pedido vacío' }, { status: 400 })

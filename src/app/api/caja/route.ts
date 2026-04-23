@@ -2,13 +2,32 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getData, getAll, insertAndGetId, aggregateSum, getAllFiltered } from '@/lib/db'
 import { getSession } from '@/lib/auth'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    getData()
+    getData(true)
     const session = await getSession()
+    const { searchParams } = new URL(request.url)
+    const wantHistorial = searchParams.get('historial') === '1'
 
     const aperturas = getAll('caja_apertura') as Array<{ id: number; usuario_id: number; monto_inicial: number; created_at: string }>
     const arqueos = getAll('caja_arqueo') as Array<{ id: number; apertura_id: number; monto_final: number; created_at: string }>
+    const usuarios = getAll('usuarios') as Array<{ id: number; nombre: string }>
+
+    if (wantHistorial) {
+      const history = aperturas.map((ap) => {
+        const arqueo = arqueos.find((a) => a.apertura_id === ap.id)
+        const usuario = usuarios.find((u) => u.id === ap.usuario_id)
+        return {
+          apertura_id: ap.id,
+          monto_inicial: ap.monto_inicial,
+          monto_final: arqueo?.monto_final || null,
+          created_at: ap.created_at,
+          usuario: usuario?.nombre,
+          cerrada: !!arqueo,
+        }
+      }).sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 10)
+      return NextResponse.json({ historial: history })
+    }
 
     let apertura = null
     let arqueo = null
@@ -44,7 +63,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    getData()
+    getData(true)
     const session = await getSession()
     if (!session) {
       return NextResponse.json({ error: 'No autenticado' }, { status: 401 })

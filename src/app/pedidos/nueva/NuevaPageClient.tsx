@@ -64,6 +64,7 @@ export default function PedidosPage() {
   const [editandoItem, setEditandoItem] = useState<CartItem | null>(null)
   const [loading, setLoading] = useState(false)
   const [initialLoading, setInitialLoading] = useState(true)
+  const [cajaCerrada, setCajaCerrada] = useState(false)
 
   const [seleccionarToppings, setSeleccionarToppings] = useState<string[]>([])
   const [seleccionarAderezos, setSeleccionarAderezos] = useState<string[]>([])
@@ -76,11 +77,13 @@ export default function PedidosPage() {
       fetch('/api/categorias').then((r) => r.json()),
       fetch('/api/productos').then((r) => r.json()),
       fetch('/api/lomito-ingredientes').then((r) => r.json()),
+      fetch('/api/caja').then((r) => r.json()).catch(() => ({ apertura: null })),
     ])
-      .then(([cats, prods, loms]) => {
+      .then(([cats, prods, loms, cajaData]) => {
         setCategorias(cats)
         setProductos(prods)
         setLomitoIngredientes(loms)
+        setCajaCerrada(!cajaData.apertura)
         if (cats.length > 0) setCatActiva(cats[0].id)
       })
       .catch(() => {
@@ -214,6 +217,27 @@ export default function PedidosPage() {
 
   const total = cart.reduce((sum, item) => sum + item.producto_precio * item.cantidad, 0)
   const productosDeCategoria = productos.filter((p) => p.categoria_id === catActiva)
+
+  if (cajaCerrada) {
+    return (
+      <div className="min-h-screen flex flex-col bg-background">
+        <BottomNav user={user} />
+        <div className="flex-1 flex flex-col items-center justify-center p-4 space-y-4">
+          <div className="bg-danger/20 border border-danger/50 p-6 rounded-xl text-center max-w-md">
+            <p className="text-danger font-medium text-lg mb-4">
+              La caja está cerrada
+            </p>
+            <p className="text-muted mb-4">
+              Debés abrir la caja antes de tomar pedidos.
+            </p>
+            <Link href="/caja">
+              <Button className="w-full">Ir a Caja para abrir</Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   if (!user) {
     return (
