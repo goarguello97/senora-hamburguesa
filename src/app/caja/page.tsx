@@ -247,7 +247,7 @@ export default function CajaPage() {
                   {diferencia !== null && diferencia >= 0 ? '+' : ''}${diferencia?.toLocaleString() || 0}
                 </span>
               </div>
-              <Button onClick={loadCaja} variant="outline" className="w-full mt-4">
+              <Button onClick={() => { setApertura(null); setArqueo(null); loadCaja(); }} variant="outline" className="w-full mt-4">
                 Nueva Apertura
               </Button>
             </CardContent>

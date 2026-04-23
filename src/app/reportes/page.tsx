@@ -6,14 +6,33 @@ import { Badge } from '@/components/ui/badge'
 import { BottomNav } from '@/components/bottom-nav'
 import { useUser } from '@/components/navbar'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import { toast } from '@/components/ui/use-toast'
-import { TrendingUp, TrendingDown, DollarSign, ShoppingBag, BarChart3 } from 'lucide-react'
+import { TrendingUp, TrendingDown, DollarSign, ShoppingBag, BarChart3, Search } from 'lucide-react'
 
 interface ReporteData {
+  fecha: string
   ingresos_efectivo: number
   ingresos_transferencia: number
+  ingreso_total: number
   total_gastos: number
   pedido_count: number
+  pedidos: Array<{
+    id: number
+    cliente: string
+    metodo_pago: string
+    total: number
+    cashier_nombre: string
+    items: Array<{
+      producto_nombre: string
+      cantidad: number
+      toppings: string[]
+      aderezos: string[]
+      omitidos: string[]
+      nota: string
+    }>
+  }>
   productos_vendidos: Array<{
     nombre: string
     cantidad: number
@@ -25,9 +44,11 @@ export default function ReportesPage() {
   const { user, loading: authLoading } = useUser()
   const [data, setData] = useState<ReporteData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [fecha, setFecha] = useState(() => new Date().toISOString().split('T')[0])
 
-  useEffect(() => {
-    fetch('/api/reportes')
+  function loadReportes(fechaToLoad: string) {
+    setLoading(true)
+    fetch(`/api/reportes?fecha=${fechaToLoad}`)
       .then((r) => r.json())
       .then((d) => {
         setData(d)
@@ -37,6 +58,10 @@ export default function ReportesPage() {
         toast.error('Error al cargar reportes')
         setLoading(false)
       })
+  }
+
+  useEffect(() => {
+    loadReportes(fecha)
   }, [])
 
   if (authLoading || !user) {
@@ -85,11 +110,25 @@ export default function ReportesPage() {
     <div className="min-h-screen flex flex-col bg-background">
       <BottomNav user={user} />
       <div className="flex-1 p-4 space-y-4 overflow-auto pb-20 md:pb-4">
+        <div className="flex gap-2 items-end">
+          <div className="flex-1">
+            <label className="text-sm font-medium">Fecha</label>
+            <Input
+              type="date"
+              value={fecha}
+              onChange={(e) => setFecha(e.target.value)}
+            />
+          </div>
+          <Button onClick={() => loadReportes(fecha)} disabled={loading}>
+            <Search className="w-4 h-4" />
+          </Button>
+        </div>
+
         <Card className="animate-slide-up">
           <CardHeader className="pb-2">
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="w-5 h-5" />
-              Resumen de Hoy
+              Resumen del {data.fecha}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -166,6 +205,49 @@ export default function ReportesPage() {
             </div>
           </CardContent>
         </Card>
+
+        {data.pedidos && data.pedidos.length > 0 && (
+          <Card className="animate-slide-up">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2">
+                Pedidos del Día ({data.pedidos.length})
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {data.pedidos.map((pedido) => (
+                <div key={pedido.id} className="p-3 border border-border rounded-lg">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span className="font-bold">#{pedido.id}</span>
+                      {pedido.cliente && (
+                        <span className="ml-2 text-primary font-medium">{pedido.cliente}</span>
+                      )}
+                    </div>
+                    <div className="text-right">
+                      <Badge variant={pedido.metodo_pago === 'efectivo' ? 'success' : 'default'} size="sm">
+                        {pedido.metodo_pago}
+                      </Badge>
+                      <div className="font-bold">${pedido.total.toLocaleString()}</div>
+                    </div>
+                  </div>
+                  <div className="text-xs text-muted mt-1">
+                    Caja: {pedido.cashier_nombre}
+                  </div>
+                  <div className="mt-2 space-y-1">
+                    {pedido.items.map((item, idx) => (
+                      <div key={idx} className="text-sm flex justify-between">
+                        <span>{item.cantidad}x {item.producto_nombre}</span>
+                        {item.toppings.length > 0 && (
+                          <span className="text-xs text-muted">+{item.toppings.join(', ')}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   )
