@@ -46,15 +46,15 @@ function MobileNavItem({ item, isActive }: { item: NavItem; isActive: boolean })
       href={item.href}
       onClick={handleClick}
       className={cn(
-        'flex flex-col items-center justify-center flex-1 h-full transition-all',
+        'flex flex-col items-center justify-center flex-1 h-full transition-all duration-200',
         isActive 
-          ? 'text-primary bg-primary/5' 
+          ? 'text-primary bg-primary/10' 
           : 'text-muted hover:text-text'
       )}
       aria-current={isActive ? 'page' : undefined}
     >
       <item.icon className="w-5 h-5" />
-      <span className="text-[10px] mt-0.5 font-medium">{item.label}</span>
+      <span className="text-[10px] mt-0.5 font-semibold">{item.label}</span>
     </a>
   )
 }
@@ -75,18 +75,20 @@ export function BottomNav({ user }: BottomNavProps) {
   return (
     <>
       {/* Desktop Header */}
-      <header className="hidden md:flex bg-primary text-white px-4 py-3 items-center justify-between shadow-md shrink-0">
+      <header className="hidden md:flex bg-surface border-b border-border/50 px-4 py-3 items-center justify-between shadow-soft shrink-0">
         <div className="flex items-center gap-3">
           <Link href="/pedidos" className="flex items-center gap-2">
-            <ChefHat className="w-6 h-6" />
-            <h1 className="text-lg font-bold">Señora Hamburguesa</h1>
+            <div className="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-sm">
+              S
+            </div>
+            <h1 className="text-lg font-bold tracking-tight text-text">Señora</h1>
           </Link>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm opacity-80">{user.nombre}</span>
+          <span className="text-sm text-muted font-medium">{user.nombre}</span>
           <button
             onClick={handleLogout}
-            className="text-sm opacity-80 hover:opacity-100 transition-opacity"
+            className="text-sm text-muted hover:text-text transition-colors font-medium"
           >
             Salir
           </button>
@@ -94,7 +96,7 @@ export function BottomNav({ user }: BottomNavProps) {
       </header>
 
       {/* Desktop Navigation Tabs */}
-      <nav className="hidden md:block bg-surface border-b border-border shrink-0">
+      <nav className="hidden md:block bg-surface/80 backdrop-blur-sm border-b border-border/30 shrink-0">
         <div className="flex max-w-7xl mx-auto">
           {items.map((item) => {
             const isActive = pathname.startsWith(item.href)
@@ -103,10 +105,10 @@ export function BottomNav({ user }: BottomNavProps) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex-1 min-w-0 py-3 px-4 text-center text-sm font-medium whitespace-nowrap border-b-2 transition-colors',
+                  'flex-1 min-w-0 py-3.5 px-4 text-center text-sm font-semibold whitespace-nowrap border-b-2 transition-all duration-200',
                   isActive
                     ? 'border-primary text-primary'
-                    : 'border-transparent text-muted hover:text-text hover:border-gray-300'
+                    : 'border-transparent text-muted hover:text-text hover:border-primary/30'
                 )}
               >
                 <span className="mr-2">
@@ -120,16 +122,18 @@ export function BottomNav({ user }: BottomNavProps) {
       </nav>
 
       {/* Mobile Header - Compact */}
-      <header className="md:hidden bg-primary text-white px-3 py-2 flex items-center justify-between shadow-md shrink-0 sticky top-0 z-40">
+      <header className="md:hidden bg-surface border-b border-border/50 px-3 py-2 flex items-center justify-between shadow-soft shrink-0 sticky top-0 z-40">
         <Link href="/pedidos" className="flex items-center gap-2">
-          <ChefHat className="w-5 h-5" />
-          <h1 className="text-base font-bold">Señora Hamburguesa</h1>
+          <div className="w-7 h-7 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-xs">
+            S
+          </div>
+          <h1 className="text-base font-bold tracking-tight text-text">Señora</h1>
         </Link>
         <div className="flex items-center gap-2">
-          <span className="text-xs opacity-80">{user.nombre}</span>
+          <span className="text-xs text-muted font-medium">{user.nombre}</span>
           <button
             onClick={handleLogout}
-            className="text-xs opacity-80 hover:opacity-100 p-1"
+            className="text-xs text-muted hover:text-text p-1 transition-colors"
           >
             Salir
           </button>
@@ -137,7 +141,7 @@ export function BottomNav({ user }: BottomNavProps) {
       </header>
 
       {/* Mobile Bottom Navigation - Native Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-border z-50 safe-area-bottom">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-border/50 z-50 safe-area-bottom shadow-[0_-2px_8px_rgb(0,0,0,0.04)]">
         <div className="flex items-center justify-around h-16">
           {items.map((item) => {
             const isActive = pathname.startsWith(item.href)

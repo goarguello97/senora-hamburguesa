@@ -535,8 +535,82 @@
       "rol": "admin"
     }
   ],
-  "caja_apertura": [],
-  "caja_arqueo": [],
+  "caja_apertura": [
+    {
+      "usuario_id": 2,
+      "monto_inicial": 10000,
+      "created_at": "2026-04-23T21:25:25.896Z",
+      "id": 1
+    },
+    {
+      "usuario_id": 2,
+      "monto_inicial": 15000,
+      "created_at": "2026-04-23T21:52:14.721Z",
+      "id": 2
+    },
+    {
+      "usuario_id": 2,
+      "monto_inicial": 10000,
+      "created_at": "2026-04-23T21:58:52.045Z",
+      "id": 3
+    },
+    {
+      "usuario_id": 2,
+      "monto_inicial": 10000,
+      "created_at": "2026-04-23T22:00:03.119Z",
+      "id": 4
+    },
+    {
+      "usuario_id": 2,
+      "monto_inicial": 10000,
+      "created_at": "2026-04-23T22:03:55.090Z",
+      "id": 5
+    },
+    {
+      "usuario_id": 2,
+      "monto_inicial": 10000,
+      "created_at": "2026-04-23T22:09:57.899Z",
+      "id": 6
+    }
+  ],
+  "caja_arqueo": [
+    {
+      "apertura_id": 1,
+      "monto_final": 25000,
+      "created_at": "2026-04-23T21:25:51.502Z",
+      "id": 1
+    },
+    {
+      "apertura_id": 2,
+      "monto_final": 15000,
+      "created_at": "2026-04-23T21:58:41.549Z",
+      "id": 5
+    },
+    {
+      "apertura_id": 3,
+      "monto_final": 10000,
+      "created_at": "2026-04-23T21:59:00.115Z",
+      "id": 6
+    },
+    {
+      "apertura_id": 4,
+      "monto_final": 15000,
+      "created_at": "2026-04-23T22:02:23.163Z",
+      "id": 7
+    },
+    {
+      "apertura_id": 5,
+      "monto_final": 8500,
+      "created_at": "2026-04-23T22:04:40.020Z",
+      "id": 8
+    },
+    {
+      "apertura_id": 6,
+      "monto_final": 12000,
+      "created_at": "2026-04-23T22:10:21.714Z",
+      "id": 9
+    }
+  ],
   "pedidos": [
     {
       "estado": "entregado",
@@ -555,6 +629,36 @@
       "created_at": "2026-04-22T23:35:24.970Z",
       "entregado_en": "2026-04-22T23:35:44.673Z",
       "id": 2
+    },
+    {
+      "estado": "entregado",
+      "total": 8500,
+      "metodo_pago": "efectivo",
+      "cashier_id": 2,
+      "created_at": "2026-04-23T21:33:03.241Z",
+      "entregado_en": "2026-04-23T21:49:45.432Z",
+      "cliente": "Chaleco",
+      "id": 3
+    },
+    {
+      "estado": "entregado",
+      "total": 8500,
+      "metodo_pago": "efectivo",
+      "cashier_id": 2,
+      "created_at": "2026-04-23T22:04:29.461Z",
+      "entregado_en": "2026-04-23T22:09:50.122Z",
+      "cliente": "Chaleco",
+      "id": 4
+    },
+    {
+      "estado": "entregado",
+      "total": 10000,
+      "metodo_pago": "transferencia",
+      "cashier_id": 2,
+      "created_at": "2026-04-23T22:10:08.061Z",
+      "entregado_en": "2026-04-23T22:10:17.581Z",
+      "cliente": "Gonzalo",
+      "id": 5
     }
   ],
   "pedido_items": [
@@ -590,6 +694,39 @@
       "nota": "",
       "estado_kds": "listo",
       "id": 3
+    },
+    {
+      "pedido_id": 3,
+      "producto_id": 1,
+      "cantidad": 1,
+      "toppings": "[\"Queso cheddar\",\"Panceta\"]",
+      "aderezos": "[]",
+      "omitidos": "[]",
+      "nota": "",
+      "estado_kds": "listo",
+      "id": 4
+    },
+    {
+      "pedido_id": 4,
+      "producto_id": 1,
+      "cantidad": 1,
+      "toppings": "[\"Queso cheddar\",\"Queso dambo\",\"Lechuga\",\"Tomate\",\"Panceta\",\"Pimientos asados\",\"Huevo frito\"]",
+      "aderezos": "[\"Mayonesa\"]",
+      "omitidos": "[]",
+      "nota": "Para chaleco",
+      "estado_kds": "listo",
+      "id": 5
+    },
+    {
+      "pedido_id": 5,
+      "producto_id": 6,
+      "cantidad": 1,
+      "toppings": "[]",
+      "aderezos": "[]",
+      "omitidos": "[]",
+      "nota": "",
+      "estado_kds": "listo",
+      "id": 6
     }
   ],
   "gastos": [],
@@ -598,10 +735,10 @@
     "productos": 10,
     "modificadores": 20,
     "lomito_ingredientes": 8,
-    "caja_apertura": 1,
-    "caja_arqueo": 1,
-    "pedidos": 3,
-    "pedido_items": 4,
+    "caja_apertura": 7,
+    "caja_arqueo": 10,
+    "pedidos": 6,
+    "pedido_items": 7,
     "gastos": 1,
     "usuarios": 3
   }

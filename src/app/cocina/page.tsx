@@ -105,16 +105,16 @@ export default function CocinaPage() {
         ) : (
           Object.entries(groupedByPedido).map(([pedidoId, pedidoItems]) => (
             <div key={pedidoId}>
-              <div className="flex items-center gap-2 mb-2">
-                <h2 className="font-bold text-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <h2 className="font-bold text-xl tracking-tight">
                   Pedido #{pedidoId}
                 </h2>
                 {pedidoItems[0].pedido_cliente && (
-                  <span className="font-medium text-primary">
+                  <span className="font-semibold text-primary text-sm">
                     - {pedidoItems[0].pedido_cliente}
                   </span>
                 )}
-                <span className="text-xs text-muted">
+                <span className="text-xs text-muted ml-auto font-medium">
                   {new Date(pedidoItems[0].pedido_fecha).toLocaleTimeString('es-AR', {
                     hour: '2-digit',
                     minute: '2-digit',
@@ -125,21 +125,21 @@ export default function CocinaPage() {
                 {pedidoItems.map((item) => (
                   <div
                     key={item.id}
-                    className={`p-4 rounded-xl border-2 bg-surface transition-all ${
+                    className={`p-4 rounded-2xl border-2 bg-surface transition-all duration-200 ${
                       item.estado_kds === 'listo' 
-                        ? 'border-success/50 bg-success-50 opacity-75' 
-                        : 'border-primary shadow-md'
+                        ? 'border-success/30 bg-success-50/30 opacity-75' 
+                        : 'border-primary shadow-soft'
                     }`}
                   >
                     <div className="flex justify-between items-start">
-                      <div className="space-y-1">
-                        <div className="font-bold text-lg">
+                      <div className="space-y-2">
+                        <div className="font-bold text-lg tracking-tight">
                           {item.cantidad > 1 && `${item.cantidad}x `}
                           {item.producto_nombre}
                         </div>
                         
                         {parseJsonSafe(item.toppings).length > 0 && (
-                          <div className="flex flex-wrap gap-1 mt-1">
+                          <div className="flex flex-wrap gap-1.5">
                             {parseJsonSafe(item.toppings).map((t, i) => (
                               <Badge key={i} variant="default" size="sm">
                                 + {t}
@@ -149,7 +149,7 @@ export default function CocinaPage() {
                         )}
                         
                         {parseJsonSafe(item.aderezos).length > 0 && (
-                          <div className="flex flex-wrap gap-1 mt-1">
+                          <div className="flex flex-wrap gap-1.5">
                             {parseJsonSafe(item.aderezos).map((a, i) => (
                               <Badge key={i} variant="warning" size="sm">
                                 {a}
@@ -159,7 +159,7 @@ export default function CocinaPage() {
                         )}
                         
                         {parseJsonSafe(item.omitidos).length > 0 && (
-                          <div className="flex flex-wrap gap-1 mt-1">
+                          <div className="flex flex-wrap gap-1.5">
                             {parseJsonSafe(item.omitidos).map((o, i) => (
                               <Badge key={i} variant="danger" size="sm">
                                 Sin {o}
@@ -174,7 +174,7 @@ export default function CocinaPage() {
                           onClick={() => marcarListo(item.id)} 
                           size="sm" 
                           variant="success"
-                          className="shadow-md"
+                          className="shadow-soft"
                         >
                           <CheckCircle2 className="w-4 h-4 mr-1" />
                           Listo
