@@ -78,14 +78,14 @@ export default function PedidosPage() {
       <BottomNav user={user} />
       <main className="flex-1 p-4 space-y-4 overflow-auto pb-20 md:pb-4">
         <Link href="/pedidos/nueva">
-          <Button className="w-full text-lg py-5 shadow-md hover:shadow-lg transition-shadow">
+          <Button className="w-full text-lg py-5 shadow-soft hover:shadow-soft-md transition-all">
             <Plus className="w-5 h-5 mr-2" />
             Nuevo Pedido
           </Button>
         </Link>
 
-        <div className="space-y-2">
-          <h2 className="font-semibold text-lg text-text">Pedidos Recientes</h2>
+        <div className="space-y-3">
+          <h2 className="font-semibold text-lg text-text tracking-tight">Pedidos Recientes</h2>
           
           {loading && <SkeletonList count={3} />}
           
@@ -93,7 +93,7 @@ export default function PedidosPage() {
             <div className="text-center py-12">
               <UtensilsCrossed className="w-12 h-12 text-muted mx-auto mb-4" />
               <p className="text-muted">No hay pedidos aún</p>
-              <Link href="/pedidos/nueva" className="text-primary text-sm hover:underline">
+              <Link href="/pedidos/nueva" className="text-primary text-sm hover:underline font-medium">
                 Crear primer pedido
               </Link>
             </div>
@@ -101,13 +101,13 @@ export default function PedidosPage() {
 
           {pedidos.map((pedido) => (
             <Link key={pedido.id} href={`/pedidos/${pedido.id}`}>
-              <Card className="hover:border-primary/50 hover:shadow-md transition-all cursor-pointer">
+              <Card className="hover:border-primary/40 hover:shadow-soft-md transition-all duration-200 cursor-pointer bg-surface">
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start">
                     <div className="space-y-1">
-                      <div className="font-bold text-lg">#{pedido.id}</div>
+                      <div className="font-bold text-xl tracking-tight">#{pedido.id}</div>
                       {pedido.cliente && (
-                        <div className="font-medium text-primary">{pedido.cliente}</div>
+                        <div className="font-semibold text-primary text-sm">{pedido.cliente}</div>
                       )}
                       <div className="text-sm text-muted">
                         {new Date(pedido.created_at).toLocaleTimeString('es-AR', { 
@@ -118,17 +118,17 @@ export default function PedidosPage() {
                       {getStatusBadge(pedido.estado)}
                     </div>
                     <div className="text-right space-y-1">
-                      <div className="font-bold text-xl text-primary">
+                      <div className="font-bold text-2xl text-primary tracking-tight">
                         ${pedido.total.toLocaleString()}
                       </div>
-                      <div className="text-sm text-muted capitalize">{pedido.metodo_pago}</div>
+                      <div className="text-sm text-muted capitalize font-medium">{pedido.metodo_pago}</div>
                     </div>
                   </div>
                   <div className="mt-3 flex gap-1.5 flex-wrap">
                     {pedido.items.map((item, idx) => (
                       <span 
                         key={idx} 
-                        className="text-xs bg-primary-50 text-primary-700 px-2 py-1 rounded-full"
+                        className="text-xs bg-primary/10 text-primary-700 px-2.5 py-1 rounded-full font-medium"
                       >
                         {item.cantidad}x {item.producto_nombre}
                       </span>

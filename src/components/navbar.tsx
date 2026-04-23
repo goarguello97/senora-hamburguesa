@@ -33,16 +33,16 @@ export function Navbar({ user }: { user: { nombre: string; rol: string } | null 
 
   return (
     <>
-      <header className="bg-primary text-white px-4 py-3 flex items-center justify-between shadow-md shrink-0">
-        <h1 className="text-lg font-bold">Señora Hamburguesa</h1>
-        <div className="flex items-center gap-2">
-          <span className="text-sm opacity-80">{user.nombre}</span>
-          <Button variant="ghost" size="sm" onClick={handleLogout} className="text-white hover:bg-white/20">
+      <header className="bg-surface border-b border-border/50 px-4 py-3 flex items-center justify-between shadow-soft shrink-0">
+        <h1 className="text-lg font-bold text-text tracking-tight">Señora</h1>
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-muted font-medium">{user.nombre}</span>
+          <Button variant="ghost" size="sm" onClick={handleLogout} className="text-muted hover:text-text hover:bg-primary/5">
             Salir
           </Button>
         </div>
       </header>
-      <nav className="bg-surface border-b border-border shrink-0">
+      <nav className="bg-surface/80 backdrop-blur-sm border-b border-border/30 shrink-0">
         <div className="flex overflow-x-auto">
           {items.map((item) => {
             const isActive = currentPath.startsWith(item.href)
@@ -50,8 +50,8 @@ export function Navbar({ user }: { user: { nombre: string; rol: string } | null 
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex-1 min-w-0 py-3 px-4 text-center text-sm font-medium whitespace-nowrap border-b-2 ${
-                  isActive ? 'border-primary text-primary' : 'border-transparent text-muted hover:text-text'
+                className={`flex-1 min-w-0 py-3.5 px-4 text-center text-sm font-semibold whitespace-nowrap border-b-2 transition-all duration-200 ${
+                  isActive ? 'border-primary text-primary' : 'border-transparent text-muted hover:text-text hover:border-primary/30'
                 }`}
               >
                 <span className="mr-1">{item.icon}</span>

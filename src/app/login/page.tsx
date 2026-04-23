@@ -5,14 +5,11 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { SkeletonInput } from '@/components/ui/skeleton'
 import { toast } from '@/components/ui/use-toast'
 
 export default function Login() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-  const [isChecking, setIsChecking] = useState(true)
   
   const [nombre, setNombre] = useState('')
   const [password, setPassword] = useState('')
@@ -79,16 +76,29 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-background">
-      <Card className="w-full max-w-sm">
-        <CardHeader className="text-center pb-2">
-          <CardTitle className="text-2xl text-primary font-bold">Señora</CardTitle>
-          <p className="text-sm text-muted">Hamburguesería</p>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-background relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-secondary/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-primary/5 rounded-full blur-2xl" />
+      </div>
+
+      <div className="w-full max-w-sm relative z-10">
+        {/* Logo / Brand */}
+        <div className="text-center mb-10 animate-fade-in">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary text-white text-3xl font-bold mb-4 shadow-soft-lg">
+            S
+          </div>
+          <h1 className="text-4xl font-bold tracking-tight text-text">Señora</h1>
+          <p className="text-muted mt-1 font-medium">Hamburguesería</p>
+        </div>
+
+        {/* Login Form */}
+        <div className="bg-surface rounded-3xl p-8 shadow-soft-md border border-border/40 animate-slide-up">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="nombre">Usuario</Label>
+              <Label htmlFor="nombre" className="text-sm font-semibold">Usuario</Label>
               <Input
                 id="nombre"
                 name="nombre"
@@ -107,14 +117,15 @@ export default function Login() {
                 placeholder="Tu usuario"
                 autoComplete="username"
                 disabled={loading}
+                className="h-12"
               />
               {errors.nombre && (
-                <p className="text-xs text-danger" role="alert">{errors.nombre}</p>
+                <p className="text-xs text-danger font-medium" role="alert">{errors.nombre}</p>
               )}
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password">Contraseña</Label>
+              <Label htmlFor="password" className="text-sm font-semibold">Contraseña</Label>
               <Input
                 id="password"
                 name="password"
@@ -134,15 +145,16 @@ export default function Login() {
                 placeholder="Tu contraseña"
                 autoComplete="current-password"
                 disabled={loading}
+                className="h-12"
               />
               {errors.password && (
-                <p className="text-xs text-danger" role="alert">{errors.password}</p>
+                <p className="text-xs text-danger font-medium" role="alert">{errors.password}</p>
               )}
             </div>
             
             <Button 
               type="submit" 
-              className="w-full" 
+              className="w-full h-12 text-base shadow-soft" 
               disabled={loading}
             >
               {loading ? (
@@ -156,8 +168,13 @@ export default function Login() {
               ) : 'Entrar'}
             </Button>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <p className="text-xs text-muted mt-8 relative z-10">
+        Sistema de gestión · Señora Hamburguesería
+      </p>
     </div>
   )
 }

@@ -126,18 +126,19 @@ export default function CajaPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="text-sm font-medium">Monto inicial ($)</label>
+                <label className="text-sm font-semibold">Monto inicial ($)</label>
                 <Input
                   type="number"
                   value={montoInicial}
                   onChange={(e) => setMontoInicial(e.target.value)}
                   placeholder="0"
+                  className="h-12 text-lg"
                 />
               </div>
               <Button 
                 onClick={abrirCaja} 
                 disabled={loading || !montoInicial} 
-                className="w-full"
+                className="w-full h-12 shadow-soft"
               >
                 {loading ? 'Abriendo...' : 'Abrir Caja'}
               </Button>
@@ -165,43 +166,44 @@ export default function CajaPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="text-sm text-muted">
+              <div className="text-sm text-muted font-medium">
                 Apertura: {new Date(apertura.created_at).toLocaleString('es-AR')}
               </div>
-              <div className="flex items-center justify-between p-3 bg-primary-50 rounded-lg">
-                <span className="text-sm">Fondo inicial:</span>
-                <span className="font-bold text-lg">${apertura.monto_inicial.toLocaleString()}</span>
+              <div className="flex items-center justify-between p-4 bg-primary/10 rounded-xl">
+                <span className="text-sm font-medium">Fondo inicial:</span>
+                <span className="font-bold text-xl">${apertura.monto_inicial.toLocaleString()}</span>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-primary-50 p-3 rounded-lg">
-                  <div className="text-xs text-muted flex items-center gap-1">
+                <div className="bg-primary/10 p-4 rounded-xl">
+                  <div className="text-xs text-muted flex items-center gap-1 font-medium">
                     <DollarSign className="w-3 h-3" /> Efectivo
                   </div>
-                  <div className="font-bold text-primary text-lg">${ingresos.efectivo.toLocaleString()}</div>
+                  <div className="font-bold text-primary text-xl mt-1">${ingresos.efectivo.toLocaleString()}</div>
                 </div>
-                <div className="bg-gray-50 p-3 rounded-lg">
-                  <div className="text-xs text-muted flex items-center gap-1">
+                <div className="bg-border/30 p-4 rounded-xl">
+                  <div className="text-xs text-muted flex items-center gap-1 font-medium">
                     <ArrowRightLeft className="w-3 h-3" /> Transferencia
                   </div>
-                  <div className="font-bold text-lg">${ingresos.transferencia.toLocaleString()}</div>
+                  <div className="font-bold text-xl mt-1">${ingresos.transferencia.toLocaleString()}</div>
                 </div>
               </div>
-              <hr className="border-border" />
+              <hr className="border-border/50" />
               <div className="flex items-center justify-between">
-                <span className="text-sm">Efectivo esperado:</span>
-                <span className="font-bold">${efectivoEsperado.toLocaleString()}</span>
+                <span className="text-sm font-medium">Efectivo esperado:</span>
+                <span className="font-bold text-lg">${efectivoEsperado.toLocaleString()}</span>
               </div>
               <div>
-                <label className="text-sm font-medium">Monto en mano ($)</label>
+                <label className="text-sm font-semibold">Monto en mano ($)</label>
                 <Input
                   type="number"
                   value={montoFinal}
                   onChange={(e) => setMontoFinal(e.target.value)}
                   placeholder="Ingresá el monto"
+                  className="h-12 text-lg"
                 />
               </div>
               {montoFinal && (
-                <div className={`p-3 rounded-lg text-center font-bold ${
+                <div className={`p-4 rounded-xl text-center font-bold text-lg ${
                   diferencia !== null && diferencia >= 0 
                     ? 'bg-success/20 text-success' 
                     : 'bg-danger/20 text-danger'
@@ -213,7 +215,7 @@ export default function CajaPage() {
               <Button 
                 onClick={cerrarCaja} 
                 disabled={loading || !montoFinal} 
-                className="w-full"
+                className="w-full h-12 shadow-soft"
               >
                 {loading ? 'Cerrando...' : 'Cerrar Caja'}
               </Button>
@@ -230,20 +232,20 @@ export default function CajaPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="text-sm text-muted">
+              <div className="text-sm text-muted font-medium">
                 Cerrada: {new Date(arqueo.created_at).toLocaleString('es-AR')}
               </div>
-              <div className="flex justify-between p-2">
-                <span>Ingresos efectivo:</span>
+              <div className="flex justify-between p-3">
+                <span className="font-medium">Ingresos efectivo:</span>
                 <span className="font-bold">${ingresos.efectivo.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between p-2">
-                <span>Monto final:</span>
+              <div className="flex justify-between p-3">
+                <span className="font-medium">Monto final:</span>
                 <span className="font-bold">${arqueo.monto_final.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between p-2 bg-primary-50 rounded-lg">
-                <span>Diferencia:</span>
-                <span className={`font-bold ${diferencia !== null && diferencia >= 0 ? 'text-success' : 'text-danger'}`}>
+              <div className="flex justify-between p-4 bg-primary/10 rounded-xl">
+                <span className="font-semibold">Diferencia:</span>
+                <span className={`font-bold text-lg ${diferencia !== null && diferencia >= 0 ? 'text-success' : 'text-danger'}`}>
                   {diferencia !== null && diferencia >= 0 ? '+' : ''}${diferencia?.toLocaleString() || 0}
                 </span>
               </div>
