@@ -69,6 +69,7 @@ export default function PedidosPage() {
   const [seleccionarAderezos, setSeleccionarAderezos] = useState<string[]>([])
   const [omitirIngredientes, setOmitirIngredientes] = useState<string[]>([])
   const [notaItem, setNotaItem] = useState('')
+  const [nombreCliente, setNombreCliente] = useState('')
 
   useEffect(() => {
     Promise.all([
@@ -184,7 +185,7 @@ export default function PedidosPage() {
       const res = await fetch('/api/pedidos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: cart, metodo_pago: metodo }),
+        body: JSON.stringify({ items: cart, metodo_pago: metodo, cliente: nombreCliente }),
       })
 
       if (res.ok) {
@@ -193,6 +194,7 @@ export default function PedidosPage() {
           description: `Número de pedido: #${data.id || '...'} | Total: $${total.toLocaleString()}`,
         })
         setCart([])
+        setNombreCliente('')
         setTimeout(() => {
           router.push('/pedidos')
         }, 1500)
@@ -510,25 +512,33 @@ export default function PedidosPage() {
         )}
 
         {cart.length > 0 && (
-          <div className="fixed bottom-16 left-0 right-0 p-4 bg-surface border-t border-border md:bottom-0">
-            <div className="flex gap-2">
-              <Button
-                onClick={() => cerrarPedido('efectivo')}
-                disabled={loading}
-                className="flex-1"
-              >
-                {loading ? 'Procesando...' : 'Efectivo'}
-              </Button>
-              <Button
-                onClick={() => cerrarPedido('transferencia')}
-                disabled={loading}
-                variant="secondary"
-                className="flex-1"
-              >
-                Transferencia
-              </Button>
+          <>
+            <Input
+              placeholder="Nombre del cliente (opcional)"
+              value={nombreCliente}
+              onChange={(e) => setNombreCliente(e.target.value)}
+              className="mb-2"
+            />
+            <div className="fixed bottom-16 left-0 right-0 p-4 bg-surface border-t border-border md:bottom-0">
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => cerrarPedido('efectivo')}
+                  disabled={loading}
+                  className="flex-1"
+                >
+                  {loading ? 'Procesando...' : 'Efectivo'}
+                </Button>
+                <Button
+                  onClick={() => cerrarPedido('transferencia')}
+                  disabled={loading}
+                  variant="secondary"
+                  className="flex-1"
+                >
+                  Transferencia
+                </Button>
+              </div>
             </div>
-          </div>
+          </>
         )}
 
         <div className="h-20 md:h-4"></div>
