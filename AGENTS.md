@@ -6,7 +6,14 @@ npm run dev    # Development server
 npm run build  # Production build
 ```
 
-## Important Notes
+## Design System
+
+### UI Palette (Warm Minimal)
+- Primary: `#de7b1c` (amber)
+- Secondary: `#feca00` (gold)
+- Background: `#feefb6` (cream)
+- Text: `#2D2A26` (warm dark)
+- Font: Outfit (Google Fonts)
 
 ### Cache Issue
 If you encounter `Cannot find module ./vendor-chunks/tailwind-merge.js`:
