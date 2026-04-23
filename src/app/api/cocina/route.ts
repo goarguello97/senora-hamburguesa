@@ -10,7 +10,7 @@ export async function GET() {
       toppings: string; aderezos: string; omitidos: string; estado_kds: string
     }>
     const productos = getAll('productos') as Array<{ id: number; nombre: string }>
-    const pedidos = getAll('pedidos') as Array<{ id: number; estado: string; created_at: string }>
+    const pedidos = getAll('pedidos') as Array<{ id: number; estado: string; created_at: string; cliente: string }>
 
     const pending = items
       .filter((item) => item.estado_kds === 'pendiente' && !pedidos.find((p) => p.id === item.pedido_id)?.estado.includes('cancel'))
@@ -21,6 +21,7 @@ export async function GET() {
           ...item,
           producto_nombre: producto?.nombre,
           pedido_fecha: pedido?.created_at,
+          pedido_cliente: pedido?.cliente,
         }
       })
       .sort((a, b) => new Date(a.pedido_fecha || 0).getTime() - new Date(b.pedido_fecha || 0).getTime())

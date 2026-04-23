@@ -19,6 +19,7 @@ interface Pedido {
   metodo_pago: string
   created_at: string
   cashier_nombre: string
+  cliente: string
   items: Array<{
     id: number
     producto_nombre: string
@@ -105,6 +106,9 @@ export default function PedidosPage() {
                   <div className="flex justify-between items-start">
                     <div className="space-y-1">
                       <div className="font-bold text-lg">#{pedido.id}</div>
+                      {pedido.cliente && (
+                        <div className="font-medium text-primary">{pedido.cliente}</div>
+                      )}
                       <div className="text-sm text-muted">
                         {new Date(pedido.created_at).toLocaleTimeString('es-AR', { 
                           hour: '2-digit', 

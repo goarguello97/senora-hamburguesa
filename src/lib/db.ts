@@ -14,7 +14,7 @@ interface DbData {
   usuarios: Array<{ id: number; nombre: string; password_hash: string; rol: 'cajero' | 'admin' }>
   caja_apertura: Array<{ id: number; usuario_id: number; monto_inicial: number; created_at: string }>
   caja_arqueo: Array<{ id: number; apertura_id: number; monto_final: number; created_at: string }>
-  pedidos: Array<{ id: number; estado: string; total: number; metodo_pago: string; cashier_id: number; created_at: string; entregado_en: string }>
+  pedidos: Array<{ id: number; estado: string; total: number; metodo_pago: string; cashier_id: number; created_at: string; entregado_en: string; cliente: string }>
   pedido_items: Array<{ id: number; pedido_id: number; producto_id: number; cantidad: number; toppings: string; aderezos: string; omitidos: string; nota: string; estado_kds: string }>
   gastos: Array<{ id: number; descripcion: string; monto: number; categoria: string; fecha: string; usuario_id: number }>
   _nextId: Record<string, number>

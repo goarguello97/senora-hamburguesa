@@ -30,6 +30,7 @@ interface Pedido {
   metodo_pago: string
   created_at: string
   cashier_nombre: string
+  cliente: string
   items: PedidoItem[]
 }
 
@@ -129,6 +130,15 @@ export default function PedidoDetallePage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-3 text-sm">
+              {pedido.cliente && (
+                <div className="flex items-center gap-2 p-2 bg-primary-50 rounded-lg">
+                  <User className="w-4 h-4 text-muted" />
+                  <div>
+                    <span className="text-xs text-muted block">Cliente:</span>
+                    <span className="font-medium">{pedido.cliente}</span>
+                  </div>
+                </div>
+              )}
               <div className="flex items-center gap-2 p-2 bg-primary-50 rounded-lg">
                 <Calendar className="w-4 h-4 text-muted" />
                 <div>

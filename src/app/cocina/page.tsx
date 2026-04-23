@@ -19,6 +19,7 @@ interface KitchenItem {
   omitidos: string
   estado_kds: string
   pedido_fecha: string
+  pedido_cliente: string
 }
 
 export default function CocinaPage() {
@@ -108,6 +109,11 @@ export default function CocinaPage() {
                 <h2 className="font-bold text-lg">
                   Pedido #{pedidoId}
                 </h2>
+                {pedidoItems[0].pedido_cliente && (
+                  <span className="font-medium text-primary">
+                    - {pedidoItems[0].pedido_cliente}
+                  </span>
+                )}
                 <span className="text-xs text-muted">
                   {new Date(pedidoItems[0].pedido_fecha).toLocaleTimeString('es-AR', {
                     hour: '2-digit',

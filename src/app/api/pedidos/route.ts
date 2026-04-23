@@ -5,7 +5,7 @@ import { getSession } from '@/lib/auth'
 export async function GET() {
   try {
     getData()
-    const pedidos = getAll('pedidos') as Array<{ id: number; estado: string; total: number; metodo_pago: string; cashier_id: number; created_at: string; entregado_en: string }>
+    const pedidos = getAll('pedidos') as Array<{ id: number; estado: string; total: number; metodo_pago: string; cashier_id: number; created_at: string; entregado_en: string; cliente: string }>
     const items = getAll('pedido_items') as Array<{ id: number; pedido_id: number; producto_id: number; cantidad: number; toppings: string; aderezos: string; omitidos: string; nota: string; estado_kds: string }>
     const productos = getAll('productos') as Array<{ id: number; nombre: string; precio: number }>
     const usuarios = getAll('usuarios') as Array<{ id: number; nombre: string }>
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { items, metodo_pago } = body
+    const { items, metodo_pago, cliente } = body
 
     if (!items || items.length === 0) {
       return NextResponse.json({ error: 'Pedido vacío' }, { status: 400 })
@@ -57,6 +57,7 @@ export async function POST(request: NextRequest) {
       cashier_id: session.id,
       created_at: now,
       entregado_en: '',
+      cliente: cliente || '',
     })
 
     for (const item of items) {
